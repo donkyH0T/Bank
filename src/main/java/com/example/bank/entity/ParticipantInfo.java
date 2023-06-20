@@ -3,15 +3,11 @@ package com.example.bank.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "PARTICIPANT_INFO")
 @Data
-@XmlAccessorType(XmlAccessType.FIELD)
 public class ParticipantInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +15,7 @@ public class ParticipantInfo {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bic_directory_entry_id")
-    private BICDirectoryEntry bicDirectoryEntry;
+    private BICDirectory bicDirectoryEntry;
 
     @Column(name = "NameP")
     private String nameP;

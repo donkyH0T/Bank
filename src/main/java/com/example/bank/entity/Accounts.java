@@ -1,20 +1,13 @@
 package com.example.bank.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 
 @Entity
 @Data
 @Table(name = "ACCOUNTS")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Accounts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +15,7 @@ public class Accounts {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bic_directory_entry_id")
-    private BICDirectoryEntry bicDirectoryEntry;
+    private BICDirectory bicDirectoryEntry;
 
     @Column(name = "Account")
     private String account;
