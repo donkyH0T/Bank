@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "PARTICIPANT_INFO")
@@ -15,7 +16,7 @@ public class ParticipantInfo {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bic_directory_entry_id")
-    private BICDirectory bicDirectoryEntry;
+    private BICDirectoryEntry bicDirectoryEntry;
 
     @Column(name = "NameP")
     private String nameP;
@@ -55,4 +56,7 @@ public class ParticipantInfo {
 
     @Column(name = "ParticipantStatus")
     private String participantStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private RstrList rstrList;
 }

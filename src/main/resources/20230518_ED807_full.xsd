@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:cbr-ru:ed:v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ED807" type="urn:ED807Type" xmlns:urn="urn:cbr-ru:ed:v2.0"/>
+  <xs:complexType name="ParticipantInfoType" mixed="true">
+    <xs:sequence>
+      <xs:element type="urn:RstrListType" name="RstrList" minOccurs="0" xmlns:urn="urn:cbr-ru:ed:v2.0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="NameP" use="optional"/>
+    <xs:attribute type="xs:string" name="CntrCd" use="optional"/>
+    <xs:attribute type="xs:string" name="Rgn" use="optional"/>
+    <xs:attribute type="xs:string" name="Ind" use="optional"/>
+    <xs:attribute type="xs:string" name="Tnp" use="optional"/>
+    <xs:attribute type="xs:string" name="Nnp" use="optional"/>
+    <xs:attribute type="xs:string" name="Adr" use="optional"/>
+    <xs:attribute type="xs:string" name="DateIn" use="optional"/>
+    <xs:attribute type="xs:string" name="PtType" use="optional"/>
+    <xs:attribute type="xs:string" name="Srvcs" use="optional"/>
+    <xs:attribute type="xs:string" name="XchType" use="optional"/>
+    <xs:attribute type="xs:string" name="UID" use="optional"/>
+    <xs:attribute type="xs:string" name="ParticipantStatus" use="optional"/>
+    <xs:attribute type="xs:string" name="PrntBIC" use="optional"/>
+    <xs:attribute type="xs:string" name="RegN" use="optional"/>
+    <xs:attribute type="xs:string" name="EnglName" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="AccountsType" mixed="true">
+    <xs:sequence>
+      <xs:element type="urn:AccRstrListType" name="AccRstrList" maxOccurs="unbounded" minOccurs="0" xmlns:urn="urn:cbr-ru:ed:v2.0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="Account" use="optional"/>
+    <xs:attribute type="xs:string" name="RegulationAccountType" use="optional"/>
+    <xs:attribute type="xs:string" name="CK" use="optional"/>
+    <xs:attribute type="xs:string" name="AccountCBRBIC" use="optional"/>
+    <xs:attribute type="xs:string" name="DateIn" use="optional"/>
+    <xs:attribute type="xs:string" name="AccountStatus" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="BICDirectoryEntryType">
+    <xs:sequence>
+      <xs:element type="urn:ParticipantInfoType" name="ParticipantInfo" xmlns:urn="urn:cbr-ru:ed:v2.0"/>
+      <xs:element type="urn:SWBICSType" name="SWBICS" maxOccurs="unbounded" minOccurs="0" xmlns:urn="urn:cbr-ru:ed:v2.0"/>
+      <xs:element type="urn:AccountsType" name="Accounts" maxOccurs="unbounded" minOccurs="0" xmlns:urn="urn:cbr-ru:ed:v2.0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="BIC" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="RstrListType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="Rstr" use="optional"/>
+        <xs:attribute type="xs:string" name="RstrDate" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="SWBICSType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="SWBIC" use="optional"/>
+        <xs:attribute type="xs:string" name="DefaultSWBIC" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="AccRstrListType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="AccRstr" use="optional"/>
+        <xs:attribute type="xs:string" name="AccRstrDate" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ED807Type">
+    <xs:sequence>
+      <xs:element type="urn:BICDirectoryEntryType" name="BICDirectoryEntry" maxOccurs="unbounded" minOccurs="0" xmlns:urn="urn:cbr-ru:ed:v2.0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="EDNo"/>
+    <xs:attribute type="xs:string" name="EDDate"/>
+    <xs:attribute type="xs:string" name="EDAuthor"/>
+    <xs:attribute type="xs:string" name="CreationReason"/>
+    <xs:attribute type="xs:string" name="CreationDateTime"/>
+    <xs:attribute type="xs:string" name="InfoTypeCode"/>
+    <xs:attribute type="xs:string" name="BusinessDay"/>
+    <xs:attribute type="xs:string" name="DirectoryVersion"/>
+  </xs:complexType>
+</xs:schema>

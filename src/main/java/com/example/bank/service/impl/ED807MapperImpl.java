@@ -1,7 +1,7 @@
 package com.example.bank.service.impl;
 
 import com.example.bank.entity.Accounts;
-import com.example.bank.entity.BICDirectory;
+import com.example.bank.entity.BICDirectoryEntry;
 import com.example.bank.entity.ED807;
 import com.example.bank.entity.ParticipantInfo;
 import com.example.bank.xmlEntity.AccountsType;
@@ -35,7 +35,7 @@ public class ED807MapperImpl{
         return ed807;
     }
 
-    private List<BICDirectory> toBICDirectoryEntryList(List<BICDirectoryEntryType> bicDirectoryEntryTypes) {
+    private List<BICDirectoryEntry> toBICDirectoryEntryList(List<BICDirectoryEntryType> bicDirectoryEntryTypes) {
         if (bicDirectoryEntryTypes == null) {
             return null;
         }
@@ -45,11 +45,11 @@ public class ED807MapperImpl{
                 .collect(Collectors.toList());
     }
 
-    private BICDirectory toBICDirectoryEntry(BICDirectoryEntryType bicDirectoryEntryType) {
+    private BICDirectoryEntry toBICDirectoryEntry(BICDirectoryEntryType bicDirectoryEntryType) {
         if (bicDirectoryEntryType == null) {
             return null;
         }
-        BICDirectory bicDirectoryEntry = new BICDirectory();
+        BICDirectoryEntry bicDirectoryEntry = new BICDirectoryEntry();
         bicDirectoryEntry.setBic(bicDirectoryEntryType.getBIC());
         bicDirectoryEntry.setParticipantInfo(toParticipantInfo(bicDirectoryEntryType.getParticipantInfo()));
         bicDirectoryEntry.setAccounts(toAccounts(bicDirectoryEntryType.getAccounts()));

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -15,7 +16,7 @@ public class Accounts {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bic_directory_entry_id")
-    private BICDirectory bicDirectoryEntry;
+    private BICDirectoryEntry bicDirectoryEntry;
 
     @Column(name = "Account")
     private String account;
@@ -35,4 +36,6 @@ public class Accounts {
     @Column(name = "AccountStatus")
     private String accountStatus;
 
+    @ManyToMany
+    private List<AccRstrList> accRstrLists;
 }

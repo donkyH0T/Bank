@@ -1,12 +1,11 @@
 package com.example.bank.dto;
 
-import com.example.bank.entity.BICDirectory;
-import jakarta.persistence.Column;
+import com.example.bank.entity.BICDirectoryEntry;
 
 import java.time.LocalDate;
 
 public class ParticipantInfoDTO {
-    private BICDirectory bicDirectoryEntry;
+    private BICDirectoryEntry bicDirectoryEntry;
     private String nameP;
     private String cntrCd;
 
@@ -22,7 +21,7 @@ public class ParticipantInfoDTO {
     private String uid;
     private String participantStatus;
 
-    public ParticipantInfoDTO(BICDirectory bicDirectoryEntry, String nameP, String cntrCd, String rgn, String ind, String tnp, String nnp, String adr, String dateIn, String ptType, String srvcs, String xchType, String uid, String participantStatus) {
+    public ParticipantInfoDTO(BICDirectoryEntry bicDirectoryEntry, String nameP, String cntrCd, String rgn, String ind, String tnp, String nnp, String adr, String dateIn, String ptType, String srvcs, String xchType, String uid, String participantStatus) {
         this.bicDirectoryEntry = bicDirectoryEntry;
         this.nameP = nameP;
         this.cntrCd = cntrCd;

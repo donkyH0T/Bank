@@ -45,5 +45,5 @@ public class ED807 {
     private Integer directoryVersion;
 
     @OneToMany(mappedBy = "ed807", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<BICDirectory> bicDirectoryEntry;
+    private List<BICDirectoryEntry> bicDirectoryEntry;
 }

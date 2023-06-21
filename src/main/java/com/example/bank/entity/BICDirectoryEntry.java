@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "BIC_DIRECTORY_ENTRY")
-public class BICDirectory {
+public class BICDirectoryEntry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,5 +26,8 @@ public class BICDirectory {
 
     @OneToMany(mappedBy = "bicDirectoryEntry", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Accounts> accounts;
+
+    @OneToOne(mappedBy = "bicDirectoryEntry", cascade = CascadeType.ALL, orphanRemoval = true)
+    private SWBICS swbics;
 
 }

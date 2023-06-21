@@ -1,11 +1,11 @@
 package com.example.bank.dto;
 
-import com.example.bank.entity.BICDirectory;
+import com.example.bank.entity.BICDirectoryEntry;
 
 import java.time.LocalDate;
 
 public class AccountDTO {
-    private BICDirectory bicDirectoryEntry;
+    private BICDirectoryEntry bicDirectoryEntry;
 
     private String account;
 
@@ -19,7 +19,7 @@ public class AccountDTO {
 
     private String accountStatus;
 
-    public AccountDTO(BICDirectory bicDirectoryEntry, String account, String regulationAccountType, String ck, String accountCBRBIC, String dateIn, String accountStatus) {
+    public AccountDTO(BICDirectoryEntry bicDirectoryEntry, String account, String regulationAccountType, String ck, String accountCBRBIC, String dateIn, String accountStatus) {
         this.bicDirectoryEntry = bicDirectoryEntry;
         this.account = account;
         this.regulationAccountType = regulationAccountType;
