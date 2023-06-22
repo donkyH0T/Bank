@@ -1,13 +1,7 @@
 package com.example.bank.service.impl;
 
-import com.example.bank.entity.Accounts;
-import com.example.bank.entity.BICDirectoryEntry;
-import com.example.bank.entity.ED807;
-import com.example.bank.entity.ParticipantInfo;
-import com.example.bank.xmlEntity.AccountsType;
-import com.example.bank.xmlEntity.BICDirectoryEntryType;
-import com.example.bank.xmlEntity.ED807Type;
-import com.example.bank.xmlEntity.ParticipantInfoType;
+import com.example.bank.entity.*;
+import com.example.bank.xmlEntity.*;
 import org.springframework.stereotype.Component;
 
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -53,8 +47,27 @@ public class ED807MapperImpl{
         bicDirectoryEntry.setBic(bicDirectoryEntryType.getBIC());
         bicDirectoryEntry.setParticipantInfo(toParticipantInfo(bicDirectoryEntryType.getParticipantInfo()));
         bicDirectoryEntry.setAccounts(toAccounts(bicDirectoryEntryType.getAccounts()));
+//        bicDirectoryEntry.setSwbics(toSWBICS(bicDirectoryEntryType.getSWBICS()));
         return bicDirectoryEntry;
     }
+
+    private List<SWBICS> toSWBICS(List<SWBICSType> swbics) {
+        if(swbics==null){
+            return null;
+        }
+        return swbics.stream()
+                .map(this::toSWBICS)
+                .collect(Collectors.toList());
+    }
+
+    private SWBICS toSWBICS(SWBICSType swbicsType) {
+        SWBICS swbics=new SWBICS();
+        swbics.setSwbic(swbicsType.getSWBIC());
+        swbics.setDefaultSWBIC(swbicsType.getDefaultSWBIC());
+        return swbics;
+    }
+
+
 
     private List<Accounts> toAccounts(List<AccountsType> accountsTypes) {
         if(accountsTypes==null){

@@ -14,20 +14,16 @@ public class BICDirectoryEntry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ed807_id")
-    private ED807 ed807;
-
     @Column(name = "BIC")
     private String bic;
 
-    @OneToOne(mappedBy = "bicDirectoryEntry", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private ParticipantInfo participantInfo;
 
-    @OneToMany(mappedBy = "bicDirectoryEntry", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Accounts> accounts;
 
-    @OneToOne(mappedBy = "bicDirectoryEntry", cascade = CascadeType.ALL, orphanRemoval = true)
-    private SWBICS swbics;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<SWBICS> swbics;
 
 }

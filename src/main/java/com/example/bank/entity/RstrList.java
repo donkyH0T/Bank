@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -22,7 +20,4 @@ public class RstrList {
 
     @Column(name="RstrDate")
     private LocalDate rstrDate;
-
-    @OneToMany(mappedBy = "rstrList", fetch = FetchType.LAZY)
-    private List<ParticipantInfo> participantInfoList;
 }

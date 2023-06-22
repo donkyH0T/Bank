@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "PARTICIPANT_INFO")
@@ -13,10 +12,6 @@ public class ParticipantInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bic_directory_entry_id")
-    private BICDirectoryEntry bicDirectoryEntry;
 
     @Column(name = "NameP")
     private String nameP;

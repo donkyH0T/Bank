@@ -16,9 +16,6 @@ public class SWBICS {
     private String swbic;
 
     @Column(name = "DefaultSWBIC")
-    private int defaultSWBIC;
+    private Integer defaultSWBIC;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bic_directory_entry_id")
-    private BICDirectoryEntry bicDirectoryEntry;
 }

@@ -16,9 +16,6 @@ public class ED807 {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "ed807", cascade = CascadeType.ALL)
-    private BankData bankData;
-
     @Column(name = "EDNo")
     private String edNo;
 
@@ -44,6 +41,6 @@ public class ED807 {
     @Column(name = "DirectoryVersion")
     private Integer directoryVersion;
 
-    @OneToMany(mappedBy = "ed807", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BICDirectoryEntry> bicDirectoryEntry;
 }

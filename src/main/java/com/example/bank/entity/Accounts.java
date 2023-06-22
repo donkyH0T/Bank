@@ -14,10 +14,6 @@ public class Accounts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bic_directory_entry_id")
-    private BICDirectoryEntry bicDirectoryEntry;
-
     @Column(name = "Account")
     private String account;
 

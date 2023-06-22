@@ -8,6 +8,8 @@
 
 package com.example.bank.xmlEntity;
 
+import lombok.Data;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -37,6 +39,7 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlType(name = "SWBICSType", propOrder = {
     "value"
 })
+@Data
 public class SWBICSType {
 
     @XmlValue
@@ -44,7 +47,7 @@ public class SWBICSType {
     @XmlAttribute(name = "SWBIC")
     protected String swbic;
     @XmlAttribute(name = "DefaultSWBIC")
-    protected String defaultSWBIC;
+    protected Integer defaultSWBIC;
 
     /**
      * Gets the value of the value property.
@@ -102,20 +105,6 @@ public class SWBICSType {
      *     {@link String }
      *     
      */
-    public String getDefaultSWBIC() {
-        return defaultSWBIC;
-    }
 
-    /**
-     * Sets the value of the defaultSWBIC property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDefaultSWBIC(String value) {
-        this.defaultSWBIC = value;
-    }
 
 }
