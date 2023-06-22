@@ -8,9 +8,9 @@ import lombok.Data;
 @Table(name="SWBICS")
 public class SWBICS {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "SWBIC_ID", nullable = false)
-    private Long swbicId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @Column(name = "SWBIC")
     private String swbic;

@@ -8,18 +8,12 @@
 
 package com.example.bank.xmlEntity;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Data;
+
 import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlMixed;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.List;
 
 
 /**
@@ -48,14 +42,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AccountsType", propOrder = {
-    "content"
-})
+@XmlType(name = "AccountsType")
+@Data
 public class AccountsType {
 
-    @XmlElementRef(name = "AccRstrList", namespace = "urn:cbr-ru:ed:v2.0", type = JAXBElement.class, required = false)
-    @XmlMixed
-    protected List<Serializable> content;
+//    @XmlElementRef(name = "AccRstrList", namespace = "urn:cbr-ru:ed:v2.0", type = JAXBElement.class, required = false)
+//    @XmlMixed
+    @XmlElement(name = "AccRstrList")
+    protected List<AccRstrListType> content;
     @XmlAttribute(name = "Account")
     protected String account;
     @XmlAttribute(name = "RegulationAccountType")
@@ -93,12 +87,7 @@ public class AccountsType {
      * 
      * 
      */
-    public List<Serializable> getContent() {
-        if (content == null) {
-            content = new ArrayList<Serializable>();
-        }
-        return this.content;
-    }
+
 
     /**
      * Gets the value of the account property.

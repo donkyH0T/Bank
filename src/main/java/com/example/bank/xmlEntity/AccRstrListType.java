@@ -8,11 +8,10 @@
 
 package com.example.bank.xmlEntity;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import lombok.Data;
+
+import javax.xml.bind.annotation.*;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -37,6 +36,7 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlType(name = "AccRstrListType", propOrder = {
     "value"
 })
+@Data
 public class AccRstrListType {
 
     @XmlValue
@@ -44,7 +44,8 @@ public class AccRstrListType {
     @XmlAttribute(name = "AccRstr")
     protected String accRstr;
     @XmlAttribute(name = "AccRstrDate")
-    protected String accRstrDate;
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar accRstrDate;
 
     /**
      * Gets the value of the value property.
@@ -102,20 +103,6 @@ public class AccRstrListType {
      *     {@link String }
      *     
      */
-    public String getAccRstrDate() {
-        return accRstrDate;
-    }
 
-    /**
-     * Sets the value of the accRstrDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAccRstrDate(String value) {
-        this.accRstrDate = value;
-    }
 
 }

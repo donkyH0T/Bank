@@ -32,9 +32,7 @@ public class Accounts {
     @Column(name = "AccountStatus")
     private String accountStatus;
 
-    @ManyToMany
-    @JoinTable(name = "accounts_accRstrLists",
-            joinColumns = @JoinColumn(name = "accounts_id"),
-            inverseJoinColumns = @JoinColumn(name = "accRstrLists_id"))
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "accRstrList_id")
     private List<AccRstrList> accRstrLists;
 }

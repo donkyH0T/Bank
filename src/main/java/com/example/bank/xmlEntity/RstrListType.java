@@ -8,11 +8,10 @@
 
 package com.example.bank.xmlEntity;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import lombok.Data;
+
+import javax.xml.bind.annotation.*;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -37,6 +36,7 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlType(name = "RstrListType", propOrder = {
     "value"
 })
+@Data
 public class RstrListType {
 
     @XmlValue
@@ -44,15 +44,16 @@ public class RstrListType {
     @XmlAttribute(name = "Rstr")
     protected String rstr;
     @XmlAttribute(name = "RstrDate")
-    protected String rstrDate;
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar rstrDate;
 
     /**
      * Gets the value of the value property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getValue() {
         return value;
@@ -60,11 +61,11 @@ public class RstrListType {
 
     /**
      * Sets the value of the value property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setValue(String value) {
         this.value = value;
@@ -72,11 +73,11 @@ public class RstrListType {
 
     /**
      * Gets the value of the rstr property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getRstr() {
         return rstr;
@@ -84,11 +85,11 @@ public class RstrListType {
 
     /**
      * Sets the value of the rstr property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
     public void setRstr(String value) {
         this.rstr = value;
@@ -96,26 +97,11 @@ public class RstrListType {
 
     /**
      * Gets the value of the rstrDate property.
-     * 
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
-    public String getRstrDate() {
-        return rstrDate;
-    }
-
-    /**
-     * Sets the value of the rstrDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRstrDate(String value) {
-        this.rstrDate = value;
-    }
 
 }

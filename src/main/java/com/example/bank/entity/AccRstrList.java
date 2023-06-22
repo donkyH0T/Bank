@@ -11,8 +11,8 @@ import java.time.LocalDate;
 public class AccRstrList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="AccRstr_id")
-    private Long accRstrId;
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @Column(name="AccRstr")
     private String accRstr;

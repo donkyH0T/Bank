@@ -26,6 +26,7 @@ public class ED807MapperImpl{
         ed807.setBusinessDay(toLocalDate(ed807Type.getBusinessDay()));
         ed807.setDirectoryVersion(ed807Type.getDirectoryVersion());
         ed807.setBicDirectoryEntry(toBICDirectoryEntryList(ed807Type.getBICDirectoryEntry()));
+        ed807.getBicDirectoryEntry().get(0).getSwbics().forEach(System.out::println);
         return ed807;
     }
 
@@ -85,7 +86,24 @@ public class ED807MapperImpl{
        accounts.setAccountCBRBIC(accountsType.getAccountCBRBIC());
        accounts.setDateIn(toLocalDate(accountsType.getDateIn()));
        accounts.setAccountStatus(accountsType.getAccountStatus());
+       accounts.setAccRstrLists(toAccRstrList(accountsType.getContent()));
         return accounts;
+    }
+
+    private List<AccRstrList> toAccRstrList(List<AccRstrListType> content) {
+        if(content==null){
+            return null;
+        }
+        return content.stream()
+                .map(this::toAccRstr)
+                .collect(Collectors.toList());
+    }
+
+    private AccRstrList toAccRstr(AccRstrListType accRstrListType) {
+        AccRstrList accRstrList=new AccRstrList();
+        accRstrList.setAccRstr(accRstrListType.getAccRstr());
+        accRstrList.setAccRstrDate(toLocalDate(accRstrListType.getAccRstrDate()));
+        return accRstrList;
     }
 
     private ParticipantInfo toParticipantInfo(ParticipantInfoType participantInfoType) {
@@ -103,7 +121,24 @@ public class ED807MapperImpl{
         participantInfo1.setXchType(participantInfoType.getXchType());
         participantInfo1.setUid(participantInfoType.getUID());
         participantInfo1.setParticipantStatus(participantInfoType.getParticipantStatus());
+        participantInfo1.setRstrList(toRstrList(participantInfoType.getContent()));
         return participantInfo1;
+    }
+
+    private List<RstrList> toRstrList(List<RstrListType> content) {
+        if(content==null){
+            return null;
+        }
+        return content.stream()
+                .map(this::toRstr)
+                .collect(Collectors.toList());
+    }
+
+    private RstrList toRstr(RstrListType rstrListType) {
+        RstrList rstrList=new RstrList();
+        rstrList.setRstr(rstrList.getRstr());
+        rstrList.setRstrDate(toLocalDate(rstrListType.getRstrDate()));
+        return rstrList;
     }
 
     private LocalDateTime toLocalDateTime(XMLGregorianCalendar creationDateTime) {

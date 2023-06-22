@@ -14,7 +14,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 
 
 /**
@@ -36,14 +35,12 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SWBICSType", propOrder = {
-    "value"
-})
+@XmlType(name = "SWBICSType")
 @Data
 public class SWBICSType {
 
-    @XmlValue
-    protected String value;
+//    @XmlValue
+//    protected String value;
     @XmlAttribute(name = "SWBIC")
     protected String swbic;
     @XmlAttribute(name = "DefaultSWBIC")
@@ -57,21 +54,21 @@ public class SWBICSType {
      *     {@link String }
      *     
      */
-    public String getValue() {
-        return value;
-    }
+//    public String getValue() {
+//        return value;
+//    }
 
     /**
      * Sets the value of the value property.
-     * 
+     *
      * @param value
      *     allowed object is
      *     {@link String }
-     *     
+     *
      */
-    public void setValue(String value) {
-        this.value = value;
-    }
+//    public void setValue(String value) {
+//        this.value = value;
+//    }
 
     /**
      * Gets the value of the swbic property.

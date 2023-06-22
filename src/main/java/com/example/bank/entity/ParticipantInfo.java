@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "PARTICIPANT_INFO")
@@ -52,7 +53,7 @@ public class ParticipantInfo {
     @Column(name = "ParticipantStatus")
     private String participantStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "rstrList_id")
-    private RstrList rstrList;
+    private List<RstrList> rstrList;
 }

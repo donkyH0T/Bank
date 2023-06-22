@@ -25,8 +25,8 @@ public class BICDirectoryEntry {
     @JoinColumn(name = "accounts_id")
     private List<Accounts> accounts;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "swbics_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "swbics_Id")
     private List<SWBICS> swbics;
 
 }
