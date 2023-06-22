@@ -42,5 +42,6 @@ public class ED807 {
     private Integer directoryVersion;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "ed807_id")
     private List<BICDirectoryEntry> bicDirectoryEntry;
 }

@@ -33,5 +33,8 @@ public class Accounts {
     private String accountStatus;
 
     @ManyToMany
+    @JoinTable(name = "accounts_accRstrLists",
+            joinColumns = @JoinColumn(name = "accounts_id"),
+            inverseJoinColumns = @JoinColumn(name = "accRstrLists_id"))
     private List<AccRstrList> accRstrLists;
 }

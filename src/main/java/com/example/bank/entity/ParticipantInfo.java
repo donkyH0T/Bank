@@ -53,5 +53,6 @@ public class ParticipantInfo {
     private String participantStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rstrList_id")
     private RstrList rstrList;
 }

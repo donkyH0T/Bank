@@ -17,13 +17,16 @@ public class BICDirectoryEntry {
     @Column(name = "BIC")
     private String bic;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "participantInfo_id")
     private ParticipantInfo participantInfo;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "accounts_id")
     private List<Accounts> accounts;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "swbics_id")
     private List<SWBICS> swbics;
 
 }

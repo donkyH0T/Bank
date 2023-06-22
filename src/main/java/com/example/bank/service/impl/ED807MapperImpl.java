@@ -47,7 +47,7 @@ public class ED807MapperImpl{
         bicDirectoryEntry.setBic(bicDirectoryEntryType.getBIC());
         bicDirectoryEntry.setParticipantInfo(toParticipantInfo(bicDirectoryEntryType.getParticipantInfo()));
         bicDirectoryEntry.setAccounts(toAccounts(bicDirectoryEntryType.getAccounts()));
-//        bicDirectoryEntry.setSwbics(toSWBICS(bicDirectoryEntryType.getSWBICS()));
+        bicDirectoryEntry.setSwbics(toSWBICS(bicDirectoryEntryType.getSWBICS()));
         return bicDirectoryEntry;
     }
 
@@ -56,11 +56,11 @@ public class ED807MapperImpl{
             return null;
         }
         return swbics.stream()
-                .map(this::toSWBICS)
+                .map(this::toSWBIC)
                 .collect(Collectors.toList());
     }
 
-    private SWBICS toSWBICS(SWBICSType swbicsType) {
+    private SWBICS toSWBIC(SWBICSType swbicsType) {
         SWBICS swbics=new SWBICS();
         swbics.setSwbic(swbicsType.getSWBIC());
         swbics.setDefaultSWBIC(swbicsType.getDefaultSWBIC());

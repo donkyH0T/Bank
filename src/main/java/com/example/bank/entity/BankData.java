@@ -12,6 +12,7 @@ public class BankData {
     private Long id;
 
     @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "ed807_id")
     private ED807 ed807;
 
     @Lob
