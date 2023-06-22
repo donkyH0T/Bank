@@ -100,6 +100,7 @@ public class ED807MapperImpl{
     }
 
     private AccRstrList toAccRstr(AccRstrListType accRstrListType) {
+
         AccRstrList accRstrList=new AccRstrList();
         accRstrList.setAccRstr(accRstrListType.getAccRstr());
         accRstrList.setAccRstrDate(toLocalDate(accRstrListType.getAccRstrDate()));
@@ -126,6 +127,7 @@ public class ED807MapperImpl{
     }
 
     private List<RstrList> toRstrList(List<RstrListType> content) {
+
         if(content==null){
             return null;
         }
@@ -136,7 +138,7 @@ public class ED807MapperImpl{
 
     private RstrList toRstr(RstrListType rstrListType) {
         RstrList rstrList=new RstrList();
-        rstrList.setRstr(rstrList.getRstr());
+        rstrList.setRstr(rstrListType.getRstr());
         rstrList.setRstrDate(toLocalDate(rstrListType.getRstrDate()));
         return rstrList;
     }

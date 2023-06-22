@@ -56,8 +56,7 @@ import java.util.List;
 @Data
 public class ParticipantInfoType {
 
-//    @XmlElementRef(name = "RstrList", namespace = "urn:cbr-ru:ed:v2.0", type = JAXBElement.class, required = false)
-//    @XmlMixed
+
     @XmlElement(name = "RstrList")
     protected List<RstrListType> content;
     @XmlAttribute(name = "NameP")
