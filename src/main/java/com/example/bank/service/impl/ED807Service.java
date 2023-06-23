@@ -4,7 +4,6 @@ import com.example.bank.entity.BankData;
 import com.example.bank.entity.ED807;
 import com.example.bank.repository.BankDataRepository;
 import com.example.bank.repository.ED807Repository;
-import com.example.bank.service.BankService;
 import com.example.bank.xmlEntity.ED807Type;
 import lombok.Data;
 import lombok.SneakyThrows;
@@ -19,7 +18,7 @@ import javax.xml.bind.Unmarshaller;
 
 @Service
 @Data
-public class ED807Service implements BankService {
+public class ED807Service{
     private final BankDataRepository bankDataRepository;
     private final ED807Repository ed807Repository;
     private final ED807MapperImpl ed807Mapper;
@@ -32,7 +31,6 @@ public class ED807Service implements BankService {
     }
 
     @SneakyThrows
-    @Override
     public BankData saveToBd(MultipartFile file){
         byte[] bytes = file.getBytes();
         BankData bankData=new BankData(bytes);
@@ -40,7 +38,6 @@ public class ED807Service implements BankService {
         return bankData;
     }
     @SneakyThrows
-    @Override
     public BankData parseFromXml(MultipartFile file,BankData bankData){
 
         JAXBContext context = JAXBContext.newInstance(com.example.bank.xmlEntity.ObjectFactory.class.getPackage().getName());

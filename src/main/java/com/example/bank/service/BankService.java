@@ -1,10 +1,13 @@
 package com.example.bank.service;
 
-import com.example.bank.entity.BankData;
-import org.springframework.web.multipart.MultipartFile;
+import com.example.bank.dto.BaseBankDto;
 
-public interface BankService {
-    public BankData saveToBd(MultipartFile file);
-    public BankData parseFromXml(MultipartFile file,BankData bankData);
-   ;
+import java.util.List;
+
+public interface BankService<T extends BaseBankDto> {
+   public List<T> getAll();
+   public T getById(Long id);
+   public T deleteEntity(Long id);
+   public T postEntity(T entity, Long id);
+   public T putEntity(T entity, Long id);
 }
