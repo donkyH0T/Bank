@@ -1,4 +1,4 @@
-package com.example.bank.restController;
+package com.example.bank.controller;
 
 import com.example.bank.entity.BankData;
 import com.example.bank.service.impl.ED807Service;

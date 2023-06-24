@@ -1,9 +1,7 @@
-package com.example.bank.restController;
+package com.example.bank.controller;
 
 import com.example.bank.entity.Accounts;
-import com.example.bank.service.BankService;
 import com.example.bank.service.impl.AccountsService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +19,7 @@ public class AccountsRestController{
         this.accountsService = accountsService;
     }
 
-    @GetMapping()
+    /*@GetMapping()
     public ResponseEntity<List<Accounts>> getAll(){
 
     }
@@ -40,7 +38,7 @@ public class AccountsRestController{
     @PutMapping()
     public ResponseEntity<List<Accounts>> putAccounts(@RequestBody Accounts entity,Long id){
 
-    }
+    }*/
 
     @DeleteMapping()
     public ResponseEntity<List<Accounts>> deleteAccounts(Long id){

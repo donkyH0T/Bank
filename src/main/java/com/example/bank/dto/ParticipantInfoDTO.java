@@ -1,8 +1,10 @@
 package com.example.bank.dto;
 
 import com.example.bank.entity.BICDirectoryEntry;
+import com.example.bank.entity.RstrList;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class ParticipantInfoDTO {
     private BICDirectoryEntry bicDirectoryEntry;
@@ -20,8 +22,9 @@ public class ParticipantInfoDTO {
     private String xchType;
     private String uid;
     private String participantStatus;
+    private List<RstrList> rstrList;
 
-    public ParticipantInfoDTO(BICDirectoryEntry bicDirectoryEntry, String nameP, String cntrCd, String rgn, String ind, String tnp, String nnp, String adr, String dateIn, String ptType, String srvcs, String xchType, String uid, String participantStatus) {
+    public ParticipantInfoDTO(BICDirectoryEntry bicDirectoryEntry, String nameP, String cntrCd, String rgn, String ind, String tnp, String nnp, String adr, LocalDate dateIn, String ptType, String srvcs, String xchType, String uid, String participantStatus, List<RstrList> rstrList) {
         this.bicDirectoryEntry = bicDirectoryEntry;
         this.nameP = nameP;
         this.cntrCd = cntrCd;
@@ -30,11 +33,12 @@ public class ParticipantInfoDTO {
         this.tnp = tnp;
         this.nnp = nnp;
         this.adr = adr;
-        this.dateIn = LocalDate.parse(dateIn);
+        this.dateIn = dateIn;
         this.ptType = ptType;
         this.srvcs = srvcs;
         this.xchType = xchType;
         this.uid = uid;
         this.participantStatus = participantStatus;
+        this.rstrList = rstrList;
     }
 }
