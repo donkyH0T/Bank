@@ -3,6 +3,7 @@ package com.example.bank.service.impl;
 import com.example.bank.entity.Accounts;
 import com.example.bank.repository.AccountsRepostitory;
 import com.example.bank.service.BankService;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Service
 @Data
+@Schema(description = "Сервис для работы с Accounts")
 public class AccountsService implements BankService<Accounts> {
 
     private final AccountsRepostitory accountsRepostitory;

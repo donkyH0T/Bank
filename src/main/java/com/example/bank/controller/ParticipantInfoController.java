@@ -1,9 +1,8 @@
 package com.example.bank.controller;
 
-import com.example.bank.entity.Accounts;
 import com.example.bank.entity.ParticipantInfo;
-import com.example.bank.service.impl.AccountsService;
 import com.example.bank.service.impl.ParticipantInfoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +19,14 @@ public class ParticipantInfoController {
         this.service = service;
     }
 
+    @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")
     @GetMapping(value = "/participants",
             produces = "application/json")
     public ResponseEntity<List<ParticipantInfo>> getAll(){
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
+    @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")
     @GetMapping(
             value = "/participants/{id}",
             produces = "application/json")
@@ -33,6 +34,7 @@ public class ParticipantInfoController {
         return new ResponseEntity<>(service.getById(id), HttpStatus.FOUND);
     }
 
+    @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")
     @PostMapping(
             value = "/participants",
             produces = "application/json",
@@ -42,6 +44,7 @@ public class ParticipantInfoController {
     }
 
 
+    @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")
     @PutMapping(
             value = "/participants/{id}",
             produces = "application/json",
@@ -50,6 +53,7 @@ public class ParticipantInfoController {
         return new ResponseEntity<>(service.update(entity, id), HttpStatus.OK);
     }
 
+    @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")
     @DeleteMapping(
             value = "/participants/{id}",
             produces = "application/json")

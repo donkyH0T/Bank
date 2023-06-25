@@ -2,13 +2,12 @@ package com.example.bank.controller;
 
 import com.example.bank.entity.Accounts;
 import com.example.bank.service.impl.AccountsService;
-import jdk.jfr.ContentType;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,12 +20,14 @@ public class AccountsRestController{
         this.service = service;
     }
 
+    @Tag(name = "Accounts", description = "Операции со аккаунтами")
     @GetMapping(value = "/accounts",
             produces = "application/json")
     public ResponseEntity<List<Accounts>> getAll(){
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
+    @Tag(name = "Accounts", description = "Операции со аккаунтами")
     @GetMapping(
             value = "/accounts/{id}",
             produces = "application/json")
@@ -34,6 +35,7 @@ public class AccountsRestController{
         return new ResponseEntity<>(service.getById(id), HttpStatus.FOUND);
     }
 
+    @Tag(name = "Accounts", description = "Операции со аккаунтами")
     @PostMapping(
             value = "/accounts",
             produces = "application/json",
@@ -46,6 +48,7 @@ public class AccountsRestController{
     // TODO исправить изменение сущности (выкидывает
     //  A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance:
     //  com.example.bank.entity.Accounts.accRstrLists)
+    @Tag(name = "Accounts", description = "Операции со аккаунтами")
     @PutMapping(
             value = "/accounts/{id}",
             produces = "application/json",
@@ -54,6 +57,7 @@ public class AccountsRestController{
         return new ResponseEntity<>(service.update(entity, id), HttpStatus.OK);
     }
 
+    @Tag(name = "Accounts", description = "Операции со аккаунтами")
     @DeleteMapping(
             value = "/accounts/{id}",
             produces = "application/json")

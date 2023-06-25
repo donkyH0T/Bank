@@ -1,15 +1,17 @@
 package com.example.bank.entity;
 
+import com.example.bank.enitiyListener.AuditableEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
 import java.util.List;
 
+@Schema(description = "Сущность для BICDirectoryEntry")
 @Entity
 @Data
 @Table(name = "BIC_DIRECTORY_ENTRY")
-public class BICDirectoryEntry {
+public class BICDirectoryEntry extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

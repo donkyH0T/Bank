@@ -1,9 +1,8 @@
 package com.example.bank.controller;
 
 import com.example.bank.entity.BICDirectoryEntry;
-import com.example.bank.entity.ParticipantInfo;
 import com.example.bank.service.impl.BICDirectoryService;
-import com.example.bank.service.impl.ParticipantInfoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +19,14 @@ public class BICDirectoryEntryController {
         this.service = service;
     }
 
+    @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")
     @GetMapping(value = "/bic_directory_entries",
             produces = "application/json")
     public ResponseEntity<List<BICDirectoryEntry>> getAll(){
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
+    @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")
     @GetMapping(
             value = "bic_directory_entries/{id}",
             produces = "application/json")
@@ -33,6 +34,7 @@ public class BICDirectoryEntryController {
         return new ResponseEntity<>(service.getById(id), HttpStatus.FOUND);
     }
 
+    @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")
     @PostMapping(
             value = "/bic_directory_entries",
             produces = "application/json",
@@ -42,6 +44,7 @@ public class BICDirectoryEntryController {
     }
 
 
+    @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")
     @PutMapping(
             value = "/bic_directory_entries/{id}",
             produces = "application/json",
@@ -50,6 +53,7 @@ public class BICDirectoryEntryController {
         return new ResponseEntity<>(service.update(entity, id), HttpStatus.OK);
     }
 
+    @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")
     @DeleteMapping(
             value = "/bic_directory_entries/{id}",
             produces = "application/json")

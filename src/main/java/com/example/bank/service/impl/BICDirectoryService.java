@@ -2,10 +2,12 @@ package com.example.bank.service.impl;
 
 import com.example.bank.entity.BICDirectoryEntry;
 import com.example.bank.service.BankService;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Schema(description = "Сервис для работы с BICDirectoryEntry")
 @Service
 public class BICDirectoryService implements BankService<BICDirectoryEntry> {
     @Override

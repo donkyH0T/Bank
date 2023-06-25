@@ -2,6 +2,7 @@ package com.example.bank.service.impl;
 
 import com.example.bank.entity.*;
 import com.example.bank.xmlEntity.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Component;
 
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -10,7 +11,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Component
+@Schema(description = "Маппер для перевода данных из dto в entity")
 public class ED807MapperImpl{
     public ED807 toED807(ED807Type ed807Type) {
         if (ed807Type == null) {
