@@ -1,66 +1,61 @@
 package com.example.bank.controller;
 
 import com.example.bank.entity.Accounts;
+import com.example.bank.entity.ParticipantInfo;
 import com.example.bank.service.impl.AccountsService;
-import jdk.jfr.ContentType;
+import com.example.bank.service.impl.ParticipantInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class AccountsRestController{
-
-    private final AccountsService service;
+public class ParticipantInfoController {
+    private final ParticipantInfoService service;
 
     @Autowired
-    public AccountsRestController(AccountsService service) {
+    public ParticipantInfoController(ParticipantInfoService service) {
         this.service = service;
     }
 
-    @GetMapping(value = "/accounts",
+    @GetMapping(value = "/participants",
             produces = "application/json")
-    public ResponseEntity<List<Accounts>> getAll(){
+    public ResponseEntity<List<ParticipantInfo>> getAll(){
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
     @GetMapping(
-            value = "/accounts/{id}",
+            value = "/participants/{id}",
             produces = "application/json")
-    public ResponseEntity<Accounts> getById(@PathVariable Long id){
+    public ResponseEntity<ParticipantInfo> getById(@PathVariable Long id){
         return new ResponseEntity<>(service.getById(id), HttpStatus.FOUND);
     }
 
     @PostMapping(
-            value = "/accounts",
+            value = "/participants",
             produces = "application/json",
             consumes = "application/json")
-    public ResponseEntity<Accounts> postAccounts(@RequestBody Accounts entity){
+    public ResponseEntity<ParticipantInfo> postAccounts(@RequestBody ParticipantInfo entity){
         return new ResponseEntity<>(service.create(entity), HttpStatus.CREATED);
     }
 
 
-    // TODO исправить изменение сущности (выкидывает
-    //  A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance:
-    //  com.example.bank.entity.Accounts.accRstrLists)
     @PutMapping(
-            value = "/accounts/{id}",
+            value = "/participants/{id}",
             produces = "application/json",
             consumes = "application/json")
-    public ResponseEntity<Accounts> putAccounts(@RequestBody Accounts entity, @PathVariable Long id){
+    public ResponseEntity<ParticipantInfo> putAccounts(@RequestBody ParticipantInfo entity, @PathVariable Long id){
         return new ResponseEntity<>(service.update(entity, id), HttpStatus.OK);
     }
 
     @DeleteMapping(
-            value = "/accounts/{id}",
+            value = "/participants/{id}",
             produces = "application/json")
-    public ResponseEntity<List<Accounts>> deleteAccounts(@PathVariable Long id){
+    public ResponseEntity<List<ParticipantInfo>> deleteAccounts(@PathVariable Long id){
         if(!service.remove(id)) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
     }
-
 }
