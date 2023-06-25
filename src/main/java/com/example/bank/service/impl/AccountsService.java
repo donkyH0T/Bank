@@ -1,7 +1,7 @@
 package com.example.bank.service.impl;
 
 import com.example.bank.entity.Accounts;
-import com.example.bank.repository.AccountsRepostitory;
+import com.example.bank.repository.AccountsRepository;
 import com.example.bank.service.BankService;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.util.List;
 @Schema(description = "Сервис для работы с Accounts")
 public class AccountsService implements BankService<Accounts> {
 
-    private final AccountsRepostitory accountsRepostitory;
+    private final AccountsRepository accountsRepostitory;
     @Override
     public List<Accounts> getAll() {
         return accountsRepostitory.findAll().stream().toList();
