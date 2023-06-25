@@ -1,5 +1,7 @@
 package com.example.bank.entity;
 
+import com.example.bank.enitiyListener.AuditableEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -7,11 +9,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Schema(description = "Сущность для ED807")
 @Entity
 @Table(name = "ED807")
 @Data
 
-public class ED807 {
+public class ED807 extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

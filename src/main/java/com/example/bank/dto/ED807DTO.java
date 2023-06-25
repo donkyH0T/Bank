@@ -1,6 +1,7 @@
 package com.example.bank.dto;
 
 import com.example.bank.xmlEntity.ED807Type;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Schema(description = "Класс для работы с dto")
 @Data
 public class ED807DTO {
     private String edNo;

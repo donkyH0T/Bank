@@ -1,11 +1,14 @@
 package com.example.bank.entity;
 
+import com.example.bank.enitiyListener.AuditableEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
+@Schema(description = "Сущность для bankDate ")
 @Entity
 @Data
-public class BankData {
+public class BankData extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

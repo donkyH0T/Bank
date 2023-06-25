@@ -1,9 +1,11 @@
 package com.example.bank.dto;
 
 import com.example.bank.entity.BICDirectoryEntry;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDate;
 
+@Schema(description = "Класс для работы с dto")
 public class ParticipantInfoDTO {
     private BICDirectoryEntry bicDirectoryEntry;
     private String nameP;

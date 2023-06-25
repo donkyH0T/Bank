@@ -1,9 +1,11 @@
 package com.example.bank.service;
 
 import com.example.bank.dto.BaseBankDto;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
 
+@Schema(description = "Интерфейс сервисов банка")
 public interface BankService<T extends BaseBankDto> {
    public List<T> getAll();
    public T getById(Long id);
