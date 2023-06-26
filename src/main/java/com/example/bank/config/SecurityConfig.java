@@ -1,22 +1,47 @@
 package com.example.bank.config;
 
-//@Configuration
-public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/{
+import com.example.bank.service.impl.CustomUserDetailsService;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.DefaultSecurityFilterChain;
 
-	/*@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
-		auth.inMemoryAuthentication().withUser("subbu").password("{noop}pass").roles("USER")
-		.and().withUser("admin1").password("{noop}admin").roles("USER","ADMIN");
-	}
+//    @Autowired
+    private CustomUserDetailsService userDetailsService;
 
-	 @Override
-	protected void configure(HttpSecurity http) throws Exception {
+//    @Override
+//    public void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .permitAll();
+//    }
 
-		http.httpBasic().and().authorizeRequests().antMatchers("/welcome").hasRole("USER")
-		.antMatchers("/**").hasRole("ADMIN")
-		.anyRequest().fullyAuthenticated();
+    @Override
+    public void configure(HttpSecurity http) {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        http.authenticationProvider(authenticationProvider);
+    }
 
-	}*/
-
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
