@@ -1,9 +1,12 @@
 spring:
   security:
     user:
-      name1:
-        password: password1
+      user1:
+        password: password
         roles: USER
-      name2:
-        password: password2
+      user2:
+        password: password
+        roles: USER
+      admin:
+        password: password
         roles: ADMIN
