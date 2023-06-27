@@ -1,10 +1,13 @@
 package com.example.bank.exception;
 
+import com.sun.jdi.request.InvalidRequestStateException;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import javax.security.auth.login.AccountNotFoundException;
 
 @ControllerAdvice
 @Schema(description = "Обработчик ошибок")
@@ -26,6 +29,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
         String errorMessage = "An illegal argument exception occurred: " + ex.getMessage();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
+    @ExceptionHandler(value = {AccountNotFoundException.class})
+    public ResponseEntity<Object> handleAccountNotFoundException(AccountNotFoundException ex) {
+        return new ResponseEntity<>("Аккаунт не найден "+ex, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = {InvalidRequestStateException.class})
+    public ResponseEntity<Object> handleInvalidRequestException(InvalidRequestStateException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 }
