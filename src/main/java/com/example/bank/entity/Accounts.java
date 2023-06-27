@@ -35,7 +35,7 @@ public class Accounts extends AuditableEntity {
     @Column(name = "AccountStatus")
     private String accountStatus;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "accRstrList_id")
     private List<AccRstrList> accRstrLists;
 }

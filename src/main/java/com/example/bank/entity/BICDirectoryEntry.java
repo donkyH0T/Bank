@@ -19,15 +19,15 @@ public class BICDirectoryEntry extends AuditableEntity {
     @Column(name = "BIC")
     private String bic;
 
-    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne( cascade = CascadeType.ALL)
     @JoinColumn(name = "participantInfo_id")
     private ParticipantInfo participantInfo;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "accounts_id")
     private List<Accounts> accounts;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "swbics_Id")
     private List<SWBICS> swbics;
 

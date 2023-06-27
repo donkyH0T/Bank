@@ -56,7 +56,9 @@ public class ParticipantInfo extends AuditableEntity {
     @Column(name = "ParticipantStatus")
     private String participantStatus;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "rstrList_id")
     private List<RstrList> rstrList;
+
+
 }
