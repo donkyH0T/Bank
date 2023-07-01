@@ -22,16 +22,16 @@ public class ParticipantInfoController {
     @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")
     @GetMapping(value = "/participants",
             produces = "application/json")
-    public ResponseEntity<List<ParticipantInfo>> getAll(){
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    public List<ParticipantInfo> getAll(){
+        return service.getAll();
     }
 
     @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")
     @GetMapping(
             value = "/participants/{id}",
             produces = "application/json")
-    public ResponseEntity<ParticipantInfo> getById(@PathVariable Long id){
-        return new ResponseEntity<>(service.getById(id), HttpStatus.FOUND);
+    public ParticipantInfo getById(@PathVariable Long id){
+        return service.getById(id);
     }
 
     @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")
@@ -39,8 +39,8 @@ public class ParticipantInfoController {
             value = "/participants",
             produces = "application/json",
             consumes = "application/json")
-    public ResponseEntity<ParticipantInfo> postAccounts(@RequestBody ParticipantInfo entity){
-        return new ResponseEntity<>(service.create(entity), HttpStatus.CREATED);
+    public ParticipantInfo postParticipantInfo(@RequestBody ParticipantInfo entity){
+        return service.create(entity);
     }
 
 
@@ -49,17 +49,15 @@ public class ParticipantInfoController {
             value = "/participants/{id}",
             produces = "application/json",
             consumes = "application/json")
-    public ResponseEntity<ParticipantInfo> putAccounts(@RequestBody ParticipantInfo entity, @PathVariable Long id){
-        return new ResponseEntity<>(service.update(entity, id), HttpStatus.OK);
+    public ParticipantInfo putParticipantInfo(@RequestBody ParticipantInfo entity, @PathVariable Long id){
+        return service.update(entity, id);
     }
 
     @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")
     @DeleteMapping(
             value = "/participants/{id}",
             produces = "application/json")
-    public ResponseEntity<List<ParticipantInfo>> deleteAccounts(@PathVariable Long id){
-        if(!service.remove(id)) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
+    public void deleteParticipantInfo(@PathVariable Long id){
+        service.remove(id);
     }
 }

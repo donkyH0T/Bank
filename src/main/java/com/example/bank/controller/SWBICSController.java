@@ -1,14 +1,9 @@
 package com.example.bank.controller;
 
-import com.example.bank.entity.Accounts;
 import com.example.bank.entity.SWBICS;
-import com.example.bank.service.impl.AccountsService;
 import com.example.bank.service.impl.SWBICSService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,47 +17,36 @@ public class SWBICSController {
         this.service = service;
     }
 
-    @Tag(name = "Accounts", description = "Операции со аккаунтами")
+    @Tag(name = "SWBICS", description = "Операции с SWBICS")
     @GetMapping(value = "/swbics",
             produces = "application/json")
-    public ResponseEntity<List<SWBICS>> getAll(){
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    public List<SWBICS> getAll(){
+        return service.getAll();
     }
 
-    @Tag(name = "Accounts", description = "Операции со аккаунтами")
+    @Tag(name = "SWBICS", description = "Операции с SWBICS")
     @GetMapping(
             value = "/swbics/{id}",
             produces = "application/json")
-    public ResponseEntity<SWBICS> getById(@PathVariable Long id){
-        return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
+    public SWBICS getById(@PathVariable Long id){
+        return service.getById(id);
     }
 
-    @Tag(name = "Accounts", description = "Операции со аккаунтами")
+    @Tag(name = "SWBICS", description = "Операции с SWBICS")
     @PostMapping(
             value = "/swbics",
             produces = "application/json",
             consumes = "application/json")
-    public ResponseEntity<SWBICS> postAccounts(@RequestBody SWBICS entity){
-        return new ResponseEntity<>(service.create(entity), HttpStatus.CREATED);
+    public SWBICS postSWBICS(@RequestBody SWBICS entity){
+        return service.create(entity);
     }
 
-
-    @Tag(name = "Accounts", description = "Операции со аккаунтами")
-    @PutMapping(
-            value = "/swbics/{id}",
-            produces = "application/json",
-            consumes = "application/json")
-    public ResponseEntity<SWBICS> putAccounts(@RequestBody SWBICS entity, @PathVariable Long id){
-        return new ResponseEntity<>(service.update(entity, id), HttpStatus.OK);
-    }
-
-    @Tag(name = "Accounts", description = "Операции со аккаунтами")
+    @Tag(name = "SWBICS", description = "Операции с SWBICS")
     @DeleteMapping(
             value = "/swbics/{id}",
             produces = "application/json")
-    public ResponseEntity<List<SWBICS>> deleteAccounts(@PathVariable Long id){
-        if(!service.remove(id)) return new ResponseEntity<>(HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
+    @ResponseBody
+    public void deleteAccounts(@PathVariable Long id){
+        service.remove(id);
     }
 }

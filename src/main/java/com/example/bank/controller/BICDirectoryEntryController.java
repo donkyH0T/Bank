@@ -22,16 +22,16 @@ public class BICDirectoryEntryController {
     @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")
     @GetMapping(value = "/bic_directory_entries",
             produces = "application/json")
-    public ResponseEntity<List<BICDirectoryEntry>> getAll(){
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    public List<BICDirectoryEntry> getAll(){
+        return service.getAll();
     }
 
     @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")
     @GetMapping(
             value = "bic_directory_entries/{id}",
             produces = "application/json")
-    public ResponseEntity<BICDirectoryEntry> getById(@PathVariable Long id){
-        return new ResponseEntity<>(service.getById(id), HttpStatus.FOUND);
+    public BICDirectoryEntry getById(@PathVariable Long id){
+        return service.getById(id);
     }
 
     @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")
@@ -39,8 +39,8 @@ public class BICDirectoryEntryController {
             value = "/bic_directory_entries",
             produces = "application/json",
             consumes = "application/json")
-    public ResponseEntity<BICDirectoryEntry> postAccounts(@RequestBody BICDirectoryEntry entity){
-        return new ResponseEntity<>(service.create(entity), HttpStatus.CREATED);
+    public BICDirectoryEntry postBIC(@RequestBody BICDirectoryEntry entity){
+        return service.create(entity);
     }
 
 
@@ -49,17 +49,15 @@ public class BICDirectoryEntryController {
             value = "/bic_directory_entries/{id}",
             produces = "application/json",
             consumes = "application/json")
-    public ResponseEntity<BICDirectoryEntry> putAccounts(@RequestBody BICDirectoryEntry entity, @PathVariable Long id){
-        return new ResponseEntity<>(service.update(entity, id), HttpStatus.OK);
+    public BICDirectoryEntry putBIC(@RequestBody BICDirectoryEntry entity, @PathVariable Long id){
+        return service.update(entity, id);
     }
 
     @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")
     @DeleteMapping(
             value = "/bic_directory_entries/{id}",
             produces = "application/json")
-    public ResponseEntity<List<BICDirectoryEntry>> deleteAccounts(@PathVariable Long id){
-        if(!service.remove(id)) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
+    public void deleteBIC(@PathVariable Long id){
+        service.remove(id);
     }
 }

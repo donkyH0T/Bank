@@ -4,35 +4,33 @@ import com.example.bank.entity.Accounts;
 import com.example.bank.service.impl.AccountsService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-public class AccountsRestController{
+public class AccountsController{
 
     private final AccountsService service;
 
     @Autowired
-    public AccountsRestController(AccountsService service) {
+    public AccountsController(AccountsService service) {
         this.service = service;
     }
 
     @Tag(name = "Accounts", description = "Операции со аккаунтами")
     @GetMapping(value = "/accounts",
             produces = "application/json")
-    public ResponseEntity<List<Accounts>> getAll(){
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    public List<Accounts> getAll(){
+        return service.getAll();
     }
 
     @Tag(name = "Accounts", description = "Операции со аккаунтами")
     @GetMapping(
             value = "/accounts/{id}",
             produces = "application/json")
-    public ResponseEntity<Accounts> getById(@PathVariable Long id){
-        return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
+    public Accounts getById(@PathVariable Long id){
+        return service.getById(id);
     }
 
     @Tag(name = "Accounts", description = "Операции со аккаунтами")
@@ -40,8 +38,8 @@ public class AccountsRestController{
             value = "/accounts",
             produces = "application/json",
             consumes = "application/json")
-    public ResponseEntity<Accounts> postAccounts(@RequestBody Accounts entity){
-        return new ResponseEntity<>(service.create(entity), HttpStatus.CREATED);
+    public Accounts postAccounts(@RequestBody Accounts entity){
+        return service.create(entity);
     }
 
 
@@ -50,17 +48,16 @@ public class AccountsRestController{
             value = "/accounts/{id}",
             produces = "application/json",
             consumes = "application/json")
-    public ResponseEntity<Accounts> putAccounts(@RequestBody Accounts entity, @PathVariable Long id){
-        return new ResponseEntity<>(service.update(entity, id), HttpStatus.OK);
+    public Accounts putAccounts(@RequestBody Accounts entity, @PathVariable Long id){
+        return service.update(entity, id);
     }
 
     @Tag(name = "Accounts", description = "Операции со аккаунтами")
     @DeleteMapping(
             value = "/accounts/{id}",
             produces = "application/json")
-    public ResponseEntity<List<Accounts>> deleteAccounts(@PathVariable Long id){
-        if(!service.remove(id)) return new ResponseEntity<>(HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
+    @ResponseBody
+    public void deleteAccounts(@PathVariable Long id){
+        service.remove(id);
     }
 }
