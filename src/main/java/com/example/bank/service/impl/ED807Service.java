@@ -5,6 +5,7 @@ import com.example.bank.entity.ED807;
 import com.example.bank.repository.BankDataRepository;
 import com.example.bank.repository.ED807Repository;
 import com.example.bank.xmlEntity.ED807Type;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import javax.xml.bind.Unmarshaller;
 
 @Service
 @Data
+@Schema(description = "Сервис для парсинга xml в dto")
 public class ED807Service{
     private final BankDataRepository bankDataRepository;
     private final ED807Repository ed807Repository;

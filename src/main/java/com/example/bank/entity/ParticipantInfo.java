@@ -1,15 +1,18 @@
 package com.example.bank.entity;
 
+import com.example.bank.enitiyListener.AuditableEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Schema(description = "Сущность для ParticipantInfo")
 @Entity
 @Table(name = "PARTICIPANT_INFO")
 @Data
-public class ParticipantInfo {
+public class ParticipantInfo extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -53,7 +56,9 @@ public class ParticipantInfo {
     @Column(name = "ParticipantStatus")
     private String participantStatus;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "rstrList_id")
     private List<RstrList> rstrList;
+
+
 }

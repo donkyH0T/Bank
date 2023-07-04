@@ -1,5 +1,7 @@
 package com.example.bank.entity;
 
+import com.example.bank.enitiyListener.AuditableEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -7,9 +9,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Schema(description = "Сущность аккаунтов")
 @Data
 @Table(name = "ACCOUNTS")
-public class Accounts{
+public class Accounts extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,7 +35,7 @@ public class Accounts{
     @Column(name = "AccountStatus")
     private String accountStatus;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "accRstrList_id")
     private List<AccRstrList> accRstrLists;
 }

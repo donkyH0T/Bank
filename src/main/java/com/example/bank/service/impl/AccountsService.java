@@ -1,37 +1,60 @@
 package com.example.bank.service.impl;
 
-import com.example.bank.dto.AccountDTO;
+import com.example.bank.entity.Accounts;
+import com.example.bank.repository.AccountsRepository;
 import com.example.bank.service.BankService;
-import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Data
-public class AccountsService extends BankService<AccountDTO> {
-    @Override
-    public List<AccountDTO> getAll() {
-        return null;
+@Schema(description = "Сервис для работы с Accounts")
+public class AccountsService implements BankService<Accounts> {
+
+    private final AccountsRepository repository;
+
+    public AccountsService(AccountsRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public AccountDTO getById(Long id) {
-        return null;
+    public List<Accounts> getAll() {
+        return repository.findAll().stream().toList();
     }
 
     @Override
-    public AccountDTO deleteEntity(Long id) {
-        return null;
+    public Accounts getById(Long id) {
+        return repository.findById(id).get();
     }
 
     @Override
-    public AccountDTO postEntity(AccountDTO entity, Long id) {
-        return null;
+    public boolean remove(Long id) {
+        repository.deleteById(id);
+        return repository.existsById(id);
     }
 
     @Override
-    public AccountDTO putEntity(AccountDTO entity, Long id) {
-        return null;
+    public Accounts create(Accounts entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+    public Accounts update(Accounts entity, Long id) {
+        return repository.findById(id)
+                .map(accounts -> {
+                    accounts.setAccount(entity.getAccount());
+                    accounts.setCk(entity.getCk());
+                    accounts.setAccountCBRBIC(entity.getAccountCBRBIC());
+                    accounts.setAccountStatus(entity.getAccountStatus());
+                    accounts.setDateIn(entity.getDateIn());
+                    accounts.setRegulationAccountType(entity.getRegulationAccountType());
+                    accounts.setAccRstrLists(entity.getAccRstrLists());
+                    return repository.save(accounts);
+                })
+                .orElseGet(() -> {
+                    entity.setId(id);
+                    return repository.save(entity);
+                });
     }
 }
