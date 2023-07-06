@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Unmarshaller;
+import java.util.List;
 
 @Service
 @Data
@@ -24,6 +25,18 @@ public class ED807Service{
     private final BankDataRepository bankDataRepository;
     private final ED807Repository ed807Repository;
     private final ED807MapperImpl ed807Mapper;
+    public List<ED807> getAll() {
+        return ed807Repository.findAll().stream().toList();
+    }
+
+    public ED807 getById(Long id) {
+        return ed807Repository.findById(id).get();
+    }
+
+    public boolean remove(Long id) {
+        return ed807Repository.existsById(id);
+    }
+
 
     @Autowired
     protected ED807Service(BankDataRepository bankDataRepository, ED807Repository ed807Repository, ED807MapperImpl ed807Mapper) {
