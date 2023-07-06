@@ -4,6 +4,8 @@ import com.example.bank.entity.ParticipantInfo;
 import com.example.bank.repository.ParticipantInfoRepository;
 import com.example.bank.service.BankService;
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +21,9 @@ public class ParticipantInfoService implements BankService<ParticipantInfo> {
     }
 
     @Override
-    public List<ParticipantInfo> getAll() {
-        return repository.findAll().stream().toList();
+    public List<ParticipantInfo> getAll(int page,int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return repository.findAll(pageable).toList();
     }
 
     @Override

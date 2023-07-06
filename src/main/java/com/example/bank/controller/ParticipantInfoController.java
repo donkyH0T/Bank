@@ -4,8 +4,6 @@ import com.example.bank.entity.ParticipantInfo;
 import com.example.bank.service.impl.ParticipantInfoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +20,9 @@ public class ParticipantInfoController {
     @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")
     @GetMapping(value = "/participants",
             produces = "application/json")
-    public List<ParticipantInfo> getAll(){
-        return service.getAll();
+    public List<ParticipantInfo> getAll(@RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "50") int size){
+        return service.getAll(page,size);
     }
 
     @Tag(name = "ParticipantInfo", description = "Операции с ParticipantInfo")

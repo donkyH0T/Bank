@@ -19,8 +19,9 @@ public class RstrListController {
     @Tag(name = "RstrList", description = "Операции с RstrList")
     @GetMapping(value = "/rstr_list",
             produces = "application/json")
-    public List<RstrList> getAll(){
-        return service.getAll();
+    public List<RstrList> getAll(@RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(defaultValue = "50") int size){
+        return service.getAll(page, size);
     }
 
     @Tag(name = "RstrList", description = "Операции с RstrList")

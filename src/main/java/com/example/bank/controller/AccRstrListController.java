@@ -1,9 +1,7 @@
 package com.example.bank.controller;
 
 import com.example.bank.entity.AccRstrList;
-import com.example.bank.entity.BICDirectoryEntry;
 import com.example.bank.service.impl.AccRstrListService;
-import com.example.bank.service.impl.BICDirectoryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +20,9 @@ public class AccRstrListController {
     @Tag(name = "AccRstrList", description = "Операции с AccRstrList")
     @GetMapping(value = "/acc_rstr_list",
             produces = "application/json")
-    public List<AccRstrList> getAll(){
-        return service.getAll();
+    public List<AccRstrList> getAll(@RequestParam(defaultValue = "0") int page,
+                                    @RequestParam(defaultValue = "50") int size){
+        return service.getAll(page,size);
     }
 
     @Tag(name = "AccRstrList", description = "Операции с AccRstrList")

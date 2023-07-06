@@ -4,8 +4,6 @@ import com.example.bank.entity.BICDirectoryEntry;
 import com.example.bank.service.impl.BICDirectoryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +20,9 @@ public class BICDirectoryEntryController {
     @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")
     @GetMapping(value = "/bic_directory_entries",
             produces = "application/json")
-    public List<BICDirectoryEntry> getAll(){
-        return service.getAll();
+    public List<BICDirectoryEntry> getAll(@RequestParam(defaultValue = "0") int page,
+                                          @RequestParam(defaultValue = "50") int size){
+        return service.getAll(page,size);
     }
 
     @Tag(name = "BICDirectoryEntry", description = "Операции с BICDirectoryEntry")

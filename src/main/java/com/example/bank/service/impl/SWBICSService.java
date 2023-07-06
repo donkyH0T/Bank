@@ -3,6 +3,8 @@ package com.example.bank.service.impl;
 import com.example.bank.entity.SWBICS;
 import com.example.bank.repository.SWBICSRepository;
 import com.example.bank.service.BankService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +18,9 @@ public class SWBICSService implements BankService<SWBICS> {
     }
 
     @Override
-    public List<SWBICS> getAll() {
-        return repository.findAll().stream().toList();
+    public List<SWBICS> getAll(int page,int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return repository.findAll(pageable).toList();
     }
 
     @Override

@@ -21,8 +21,9 @@ public class AccountsController{
     @Tag(name = "Accounts", description = "Операции со аккаунтами")
     @GetMapping(value = "/accounts",
             produces = "application/json")
-    public List<Accounts> getAll(){
-        return service.getAll();
+    public List<Accounts> getAll(@RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(defaultValue = "50") int size){
+        return service.getAll(page,size);
     }
 
     @Tag(name = "Accounts", description = "Операции со аккаунтами")

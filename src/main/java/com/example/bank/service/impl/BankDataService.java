@@ -3,6 +3,9 @@ package com.example.bank.service.impl;
 import com.example.bank.entity.BankData;
 import com.example.bank.repository.BankDataRepository;
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,22 +14,19 @@ import java.util.List;
 @Schema(description = "Сервис для работы с BankData")
 public class BankDataService{
 
-    private final BankDataRepository repository;
+    @Autowired
+    private BankDataRepository bankDataRepository;
 
-    public BankDataService(BankDataRepository repository) {
-        this.repository = repository;
-    }
-
-    public List<BankData> getAll() {
-        return repository.findAll().stream().toList();
+    public List<BankData> getAllWithPagination(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return bankDataRepository.findAll(pageable).toList();
     }
 
     public BankData getById(Long id) {
-        return repository.findById(id).get();
+        return bankDataRepository.findById(id).get();
     }
 
     public boolean remove(Long id) {
-        repository.deleteById(id);
-        return repository.existsById(id);
+        return bankDataRepository.existsById(id);
     }
 }

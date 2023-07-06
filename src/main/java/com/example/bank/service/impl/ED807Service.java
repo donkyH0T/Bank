@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,8 +27,9 @@ public class ED807Service{
     private final BankDataRepository bankDataRepository;
     private final ED807Repository ed807Repository;
     private final ED807MapperImpl ed807Mapper;
-    public List<ED807> getAll() {
-        return ed807Repository.findAll().stream().toList();
+    public List<ED807> getAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ed807Repository.findAll(pageable).toList();
     }
 
     public ED807 getById(Long id) {

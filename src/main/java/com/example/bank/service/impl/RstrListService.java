@@ -3,6 +3,8 @@ package com.example.bank.service.impl;
 import com.example.bank.entity.RstrList;
 import com.example.bank.repository.RstrListRepository;
 import com.example.bank.service.BankService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +19,9 @@ public class RstrListService implements BankService<RstrList> {
     }
 
     @Override
-    public List<RstrList> getAll() {
-        return repository.findAll().stream().toList();
+    public List<RstrList> getAll(int page,int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return repository.findAll(pageable).toList();
     }
 
     @Override

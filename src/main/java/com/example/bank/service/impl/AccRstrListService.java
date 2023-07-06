@@ -1,10 +1,10 @@
 package com.example.bank.service.impl;
 
 import com.example.bank.entity.AccRstrList;
-import com.example.bank.entity.SWBICS;
 import com.example.bank.repository.AccRstrListRepository;
-import com.example.bank.repository.SWBICSRepository;
 import com.example.bank.service.BankService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +18,9 @@ public class AccRstrListService implements BankService<AccRstrList> {
     }
 
     @Override
-    public List<AccRstrList> getAll() {
-        return repository.findAll().stream().toList();
+    public List<AccRstrList> getAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return repository.findAll(pageable).toList();
     }
 
     @Override

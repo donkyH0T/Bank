@@ -4,7 +4,8 @@ import com.example.bank.entity.BICDirectoryEntry;
 import com.example.bank.repository.BICDirectoryEntryRepository;
 import com.example.bank.service.BankService;
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +21,9 @@ public class BICDirectoryService implements BankService<BICDirectoryEntry> {
     }
 
     @Override
-    public List<BICDirectoryEntry> getAll() {
-        return repository.findAll().stream().toList();
+    public List<BICDirectoryEntry> getAll(int page,int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return repository.findAll(pageable).toList();
     }
 
     @Override

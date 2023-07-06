@@ -20,8 +20,9 @@ public class SWBICSController {
     @Tag(name = "SWBICS", description = "Операции с SWBICS")
     @GetMapping(value = "/swbics",
             produces = "application/json")
-    public List<SWBICS> getAll(){
-        return service.getAll();
+    public List<SWBICS> getAll(@RequestParam(defaultValue = "0") int page,
+                               @RequestParam(defaultValue = "50") int size){
+        return service.getAll(page, size);
     }
 
     @Tag(name = "SWBICS", description = "Операции с SWBICS")
